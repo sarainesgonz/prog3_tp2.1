@@ -1,4 +1,21 @@
-class Sensor {}
+class Sensor {
+    // DONE Clase sensor y atributos
+    #updated_at;
+    constructor(id, name, type, value, unit, updated_at) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.value = value;
+        this.unit = unit;
+        this.#updated_at = updated_at
+    }
+
+    // DONE para updated_at prop computada set para actualizar
+    set updated_at(updated_at) {
+        this.#updated_at = updated_at;
+    }
+
+}
 
 class SensorManager {
     constructor() {
@@ -33,7 +50,18 @@ class SensorManager {
         }
     }
 
-    async loadSensors(url) {}
+    // DONE cargar los sensores desde el json
+    async loadSensors(url) {
+        const response = await fetch('sensors.json');
+        const sensors = await response.json();
+        console.log(sensors)
+        sensors.forEach((sensor) => {
+            sensor = new Sensor(sensor.id, sensor.name, sensor.type, sensor.value, sensor.unit, sensor.updated_at );
+
+            this.addSensor(sensor);
+            this.render()
+        })
+    }
 
     render() {
         const container = document.getElementById("sensor-container");
