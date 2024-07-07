@@ -1,6 +1,5 @@
 class Sensor {
     // DONE Clase sensor y atributos
-    #value;
     constructor(id, name, type, value, unit, updated_at) {
         this.id = id;
         this.name = name;
@@ -12,25 +11,13 @@ class Sensor {
 
     // TODO  prop computada set para actualizar
     
-    get value(){
-        return this.#value;
+    set updateValue(newValue) {
+        // actualiza el valor pero no la fecha
+        this.value = newValue;
+        // actualiza la fecha
+        this.updated_at = new Date()
+
     }
-    set value(value) {
-        this.#value = value;
-    }
-
-    // #updateValue(value) {
-    //     const newValue = this.#value
-    //     return newValue
-    // }
-
-    // get updateValue(){
-    //     return this.#updateValue()
-    // }
-
-    // set updateValue(value) {
-    //     this.#value = this.value
-    // }
 }
 
 class SensorManager {
