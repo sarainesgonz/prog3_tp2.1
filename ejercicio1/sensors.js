@@ -7,10 +7,14 @@ class Sensor {
         this.type = type;
         this.value = value;
         this.unit = unit;
-        this.#updated_at = updated_at
+        this.#updated_at = updated_at;
     }
 
-    // DONE para updated_at prop computada set para actualizar
+    // TODO para updated_at prop computada set para actualizar
+    get updated_at(){
+        return this.#updated_at
+    }
+    
     set updated_at(updated_at) {
         this.#updated_at = updated_at;
     }
