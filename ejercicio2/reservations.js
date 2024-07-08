@@ -5,12 +5,42 @@ class Customer {
         this.email = email;
     }
 
+    // DONE: una propiedad computada info que retorna una string del name y el email
     get info() {
-        return this.name, this.email
+        return `Titular de la resvera: ${this.name}, Email: ${this.email}`
     }
 }
 
-class Reservation {}
+class Reservation {
+    constructor(id, customer, date, guests){
+        this.id = id;
+        // this.customer = new Customer();
+        this.customer = customer;
+        this.date = new Date(date);
+        this.guests = guests;
+    }
+    // DONE:propiedad computada `info` que retorne una cadena con la fecha y hora de la reserva, la información del cliente y el número de comensales.
+    get info(){
+        return `Titular de la reserva: ${this.customer.name}
+                <br>
+                Numero de comensales: ${this.guests}
+                <br>
+                Fecha de la reserva: ${this.date.toLocaleDateString()}
+                <br>
+                Hora de la reserva: ${this.date.toLocaleTimeString()}`
+    }
+
+    // DONE: implementar un método estático `validateReservation` que reciba un objeto con la información de la reserva
+    static validateReservation(resoInfo) {
+        const {id, customer, date, guests} = resoInfo;
+        // DONE: Si la fecha de la reserva es anterior a la fecha actual y la cantidad de comensales es menor o igual a 0, la reserva no es válida.
+        const resoDate = new Date(date);
+        if ( resoDate < new Date() || guests <= 0 ) {
+            return false
+        }
+        return true
+    }
+}
 
 class Restaurant {
     constructor(name) {
