@@ -3,12 +3,31 @@ class Currency {
         this.code = code;
         this.name = name;
     }
+    
 }
 
 class CurrencyConverter {
-    constructor() {}
+    constructor(apiUrl, currencies = []) {
+        this.apiUrl = apiUrl;
+        this.currencies = currencies
+    }
+// DONE Método asíncrono que realiza una petición al endpoint `/currencies` de la API de Frankfurter para obtener la lista de códigos de monedas disponibles.
+    async getCurrencies() {
+        const response = await fetch("https://api.frankfurter.app/currencies");
+        const dataCurrencies = await response.json();
+        console.log(dataCurrencies)
+    // Obtener los codigos: El método debe almacenar las monedas obtenidas en el atributo `currencies` como instancias de la clase `Currency`
+        // dataCurrencies.forEach((code, name) => {
+        //     this.currencies = new Currency(code, name)
+        //     console.log(this.currencies)
+        // })
+       for (const code in dataCurrencies) {
+        const name = dataCurrencies[code];
+        this.currencies = new Currency(code, name)
+        console.log(this.currencies)
+       }
 
-    getCurrencies(apiUrl) {}
+    }
 
     convertCurrency(amount, fromCurrency, toCurrency) {}
 }
