@@ -27,7 +27,9 @@ class Reservation {
                 <br>
                 Fecha de la reserva: ${this.date.toLocaleDateString()}
                 <br>
-                Hora de la reserva: ${this.date.toLocaleTimeString()}`
+                Hora de la reserva: ${this.date.toLocaleTimeString()}
+                <br>
+                Email del titular: ${this.customer.email}`
     }
 
     // DONE: implementar un método estático `validateReservation` que reciba un objeto con la información de la reserva
