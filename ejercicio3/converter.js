@@ -32,9 +32,22 @@ class CurrencyConverter {
     }
 
     async convertCurrency(amount, fromCurrency, toCurrency) {
-        const response = await fetch("https://api.frankfurter.app/latest")
-        const data = await response.json();
-        console.log(data)
+        
+        // TODO- Si el atributo `code` de `fromCurrency` es igual al atributo `code` de `toCurrency`, el método debe retornar el monto sin realizar ninguna petición
+        
+            if (fromCurrency.code != toCurrency.code ) {
+                const response = await fetch("https://api.frankfurter.app/latest")
+                const data = await response.json();
+                console.log(data)
+                
+                return data.amount 
+            } else {
+                return amount
+            }
+     
+    
+        
+
     }
 }
 
