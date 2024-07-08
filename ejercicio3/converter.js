@@ -23,13 +23,19 @@ class CurrencyConverter {
         // })
        for (const code in dataCurrencies) {
         const name = dataCurrencies[code];
-        this.currencies = new Currency(code, name)
-        console.log(this.currencies)
+        const newCurrency = new Currency(code, name)
+        console.log(newCurrency)
+        this.currencies.push(newCurrency)
        }
-
+       console.log(this.currencies)
+    // no retorna nada
     }
 
-    convertCurrency(amount, fromCurrency, toCurrency) {}
+    async convertCurrency(amount, fromCurrency, toCurrency) {
+        const response = await fetch("https://api.frankfurter.app/latest")
+        const data = await response.json();
+        console.log(data)
+    }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
